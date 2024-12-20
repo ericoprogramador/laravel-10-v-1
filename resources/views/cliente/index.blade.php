@@ -371,7 +371,14 @@
                     <td>{{ $cli->fone }}</td>
                     <td>{{ $cli->email }}</td>
                     <td><a href="{{ route('cliente.editar',['cliente' => $cli->id]) }}" class="btn btn-primary">Editar</a></td>
-                    <td><a href="" class="btn btn-danger">Excluir</a></td>
+                    <td>
+                        <form action="{{ route('cliente.destroy', ['cliente' => $cli->id]) }}" method="post">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="btn btn-danger">Excluir</button>
+                        </form>
+
+                    </td>
                 </tr>
             @empty
             <tr><td>Nada foi cadastrado</td></tr>

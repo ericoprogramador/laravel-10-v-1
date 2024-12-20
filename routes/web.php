@@ -23,4 +23,5 @@ Route::get('/mostrar-cliente', [ClienteController::class, 'mostrar'])->name('cli
 Route::post('/store-cliente', [ClienteController::class, 'store'])->name('cliente.store');
 Route::get('/editar-cliente/{cliente}', [ClienteController::class, 'editar'])->name('cliente.editar');
 Route::put('/update-cliente/{cliente}', [ClienteController::class, 'update'])->name('cliente.update');
+Route::delete('/destroy-cliente/{cliente}', [ClienteController::class, 'destroy'])->name('cliente.destroy');
 
