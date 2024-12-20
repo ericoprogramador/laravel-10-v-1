@@ -342,7 +342,11 @@
         </div>
       </div>
 
-
+      @if(session('sucesso'))
+      <div class="alert alert-success">
+          {{ session('sucesso') }}
+      </div>
+      @endif
 
       <h2>Lista de Clientes</h2>
       <div class="table-responsive small">
@@ -359,34 +363,19 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>7</td>
-              <td>Maykon Silveira</td>
-              <td>7777</td>
-              <td>(41)7777-7777</td>
-              <td>cursos@maykonsilveria.com.br</td>
-              <td><a href="" class="btn btn-primary">Editar</a></td>
-              <td><a href="" class="btn btn-danger">Excluir</a></td>
-            </tr>
-            <tr>
-              <td>7</td>
-              <td>Maykon Silveira</td>
-              <td>7777</td>
-              <td>(41)7777-7777</td>
-              <td>cursos@maykonsilveria.com.br</td>
-              <td><a href="" class="btn btn-primary">Editar</a></td>
-              <td><a href="" class="btn btn-danger">Excluir</a></td>
-            </tr>
-            <tr>
-              <td>7</td>
-              <td>Maykon Silveira</td>
-              <td>7777</td>
-              <td>(41)7777-7777</td>
-              <td>cursos@maykonsilveria.com.br</td>
-              <td><a href="" class="btn btn-primary">Editar</a></td>
-              <td><a href="" class="btn btn-danger">Excluir</a></td>
-            </tr>
-
+            @forelse($cliente as $cli)
+                <tr>
+                    <td>{{ $cli->id }}</td>
+                    <td>{{ $cli->nome }}</td>
+                    <td>{{ $cli->cpf }}</td>
+                    <td>{{ $cli->fone }}</td>
+                    <td>{{ $cli->email }}</td>
+                    <td><a href="{{ route('cliente.editar',['cliente' => $cli->id]) }}" class="btn btn-primary">Editar</a></td>
+                    <td><a href="" class="btn btn-danger">Excluir</a></td>
+                </tr>
+            @empty
+            <tr><td>Nada foi cadastrado</td></tr>
+            @endforelse
           </tbody>
         </table>
       </div>
