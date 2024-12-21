@@ -334,12 +334,29 @@
           <div class="btn-group me-2">
             <button type="button" class="btn btn-sm btn-outline-secondary">Importar</button>
             <button type="button" class="btn btn-sm btn-outline-secondary">Exportar</button>
+            <a href="{{ route('cliente.criar') }}" class="btn btn-primary">Novo</a>
           </div>
           <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle d-flex align-items-center gap-1">
             <svg class="bi"><use xlink:href="#calendar3"/></svg>
            Ações
           </button>
         </div>
+      </div>
+
+      <div class="col-md-12 col-sm-12">
+            <div class="form-group">
+                <form action="{{ route('cliente.index') }}">
+                    <div class="row">
+                        {{-- coluna imput --}}
+                        <div class="col-md-11 col-sm-12">
+                            <input type="text" class="form-control" name="pesquisa" placeholder="Pesquisar Nome, Cpf ou E-mail">
+                        </div>
+                        <div class="col-md-1 col-sm-12">
+                            <button class="btn btn-primary" type="submit">Buscar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
       </div>
 
       @if(session('sucesso'))
@@ -385,6 +402,7 @@
             @endforelse
           </tbody>
         </table>
+        {{ $cliente->onEachSide(0)->links() }}
       </div>
     </main>
   </div>

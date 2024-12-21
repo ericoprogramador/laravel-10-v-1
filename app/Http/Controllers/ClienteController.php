@@ -8,9 +8,14 @@ use Illuminate\Http\Request;
 
 class ClienteController extends Controller
 {
-   public function index()
+   public function index(Request $request)
    {
-        $cliente = Cliente::orderByDesc('created_at')->get();
+        $termoDePesquisa = $request->input('pesquisa');
+        $cliente = Cliente::where('nome', 'like', '%'. $termoDePesquisa .'%')
+        ->orWhere('cpf', 'like', '%'. $termoDePesquisa .'%')
+        ->orWhere('email', 'like', '%'. $termoDePesquisa .'%')
+        ->orderByDesc('created_at')
+        ->paginate(3)->withQueryString();
         return view('cliente/index', ['cliente' => $cliente]);
    }
    public function criar()
